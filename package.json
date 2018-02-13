@@ -1,18 +1,23 @@
 {
-  "name": "simpleblockchain",
+  "name": "dprot",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ed",
+  "keywords": [
+    "blockchain"
+  ],
+  "author": "Eduard",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "crypto-js": "^3.1.9-1",
+    "ecdsa": "^0.7.0",
     "express": "^4.16.2",
-    "ws": "^4.0.0"
+    "lowdb": "^1.0.0",
+    "secp256k1": "^3.5.0",
+    "socket.io": "^2.0.4"
   }
 }

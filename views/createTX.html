@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <title> createTX page</title>
+    </head>
+    <body>
+        <script>
+            var socket = io.connect('http://localhost:3000')
+            // socket.on('news', function (data) {
+            //     console.log(data)
+            //     socket.emit('my other event', { my: 'data' })
+            // })
+            socket.on('succesful', () => {alert("Your tx will broadcast succesfully")})
+            socket.on('wrong', () => {alert("Something going wrong")})
+        </script>
+        <form action="/createTX" method="post">
+            Input your public key:<br>
+            <input type="text" name="pubKey" size="50"><br><br>
+            Input your private key:<br>
+            <input type="text" name="privKey" size="50"><br><br>
+            Input amount you want send:<br>
+            <input type="number" name="amount" size="20" maxlength="18"><br><br>
+            Input recipient address:<br>
+            <input type="text" name="recipAddr" size="50"><br><br>
+            <input type="submit" value="Send" />
+        </form>
+    </body>
+
+</html>
+
+
