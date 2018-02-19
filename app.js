@@ -115,7 +115,6 @@ function init_webinterface(){
     server.listen(http_port, () => console.log('Listening http on port: ' + http_port))
     //====================================genesis function=========================================
     genesisStart(10000)
-    //createTransaction("genesis", 1000000)
 }
 
 // create Key pair
@@ -165,62 +164,6 @@ async function checkAccountForExist(_address){
         Acc.get('accounts').push({id: _id, address: _address, balance: 0}).write()
     }
 }
-
-// to create an overload functions
-function polymorph() {
-    var len2func = [];
-    for(var i=0; i<arguments.length; i++)
-      if(typeof(arguments[i]) == "function")
-        len2func[arguments[i].length] = arguments[i];
-    return () => {
-      return len2func[arguments.length].apply(this, arguments);
-    }
-}
-
-// const createTransaction = polymorph(
-//     (_genesis, _amount) => {
-//         // create keys for first account
-//         createKeyPair(async result => {
-//             const index = 0
-//             const prevHash = CryptoJS.SHA256(0).toString()
-//             const time = new Date()
-//             const pubKey = result.pubkey
-//             const hash = calculateTxHash(index, prevHash, time, pubKey, _genesis, _amount)
-//             //push transaction into database
-//             TX.get('transactions')
-//                 .push({index: index, prevHash: prevHash, time: time, to: pubKey, from: _genesis, amount: _amount, hash: hash})
-//                 .write()
-//             //push account record with amount
-//             Acc.get('accounts')
-//                 .push({id: 0, address: pubKey, balance: _amount})
-//                 .write()
-//             const balance = await getBalanceByAccount(pubKey)
-//             console.log(`\n Genesis start \n public key = ${result.pubKey} \n private key = ${result.privKey}\n and balance = ${balance} AXELs \n`)
-//         })
-//     },
-//     (_to, _from, _amount) => {
-//         const index = getLastTX().index + 1
-//         const prevHash = getLastTX().hash
-//         const time = new Date()
-//         const amount = Number(_amount)
-//         const hash = calculateTxHash(index, prevHash, time, _to, _from, amount)
-//         TX.get('transactions')
-//             .push({index: index, prevHash: prevHash, time: time, to: _to, from: _from, amount: amount, hash: hash})
-//             .write()
-//         getBalanceByAccount(_from).then(balance_from => {
-//             let _id = getLastAc().id + 1
-//             Acc.get('accounts')
-//                 .push({id: _id, address: _from, balance: balance_from - amount})
-//                 .write()
-//             getBalanceByAccount(_to).then(balance_to => {
-//                 _id = getLastAc().id + 1
-//                 Acc.get('accounts')
-//                     .push({id: _id, address: _to, balance: balance_to + amount})
-//                     .write()
-//             })
-//         })
-//     }
-// )
 
 // create transaction
 function createTx(_to, _from, _amount){
